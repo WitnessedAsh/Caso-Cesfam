@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--Styles-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Cesfam</title>
+</head>
+
+<body>
+    <!--!!!NAVBAR!!!-->
+    <div id="div1">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light float-left">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">INICIO</button>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HOSPITALES</button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CONÓZCANOS</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="btn dropdown-item algo" type="button">VISIÓN</button>
+                            <button class="btn dropdown-item algo" type="button">MISIÓN</button>
+                            <button class="btn dropdown-item algo" type="button">VALORES</button>
+                            <button class="btn dropdown-item algo" type="button">EQUIPO</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONTACTO</button>
+                    <!--<button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">Logout</button>-->
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONECTARSE</button>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="div2">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/hospital-noticia.jpg' %}" class="d-block w-100" alt="Florida">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
