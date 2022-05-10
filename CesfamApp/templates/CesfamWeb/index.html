@@ -23,22 +23,22 @@
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">INICIO</button>
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false"><a href="{%url 'home'%}">INICIO</a></button>
                     <div class="dropdown">
-                        <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HOSPITALES</button>
+                        <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="{%url 'hospitales'%}">HOSPITALES</a></button>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CONÓZCANOS</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="btn dropdown-item algo" type="button">VISIÓN</button>
-                            <button class="btn dropdown-item algo" type="button">MISIÓN</button>
-                            <button class="btn dropdown-item algo" type="button">VALORES</button>
-                            <button class="btn dropdown-item algo" type="button">EQUIPO</button>
+                            <button class="btn dropdown-item algo" type="button"><a href="{%url 'vision'%}">VISIÓN</a></button>
+                            <button class="btn dropdown-item algo" type="button"><a href="{%url 'mision'%}">MISIÓN</a></button>
+                            <button class="btn dropdown-item algo" type="button"><a href="{%url 'valores'%}">VALORES</a></button>
+                            <button class="btn dropdown-item algo" type="button"><a href="{%url 'equipo'%}">EQUIPO</a></button>
                         </div>
                     </div>
-                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONTACTO</button>
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false"><a href="{%url 'contacto'%}">CONTACTO</a></button>
                     <!--<button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">Logout</button>-->
-                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONECTARSE</button>
+                    <button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false"><a href="{%url 'login'%}">CONECTARSE</a></button>
                 </ul>
             </div>
         </nav>
