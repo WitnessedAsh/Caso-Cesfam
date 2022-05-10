@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'CesfamApp',
+    'core',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_medicamento'
 ]
 
 MIDDLEWARE = [
