@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap-->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!--Styles-->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'letreros/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'letreros/css/style.css' %}">
+    <!--Js-->
 
-    <title>Cesfaam</title>
+    <title>LETREROS</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <a href="{%url 'contacto'%}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONTACTO</button></a> {% if request.user.is_authenticated %}
-                    <a href="{% url 'logout' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">SALIR</button></a>
+                    <a href="{% url 'login' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">SALIR</button></a>
                     <span class="badge red z-depth-1 mr-1"> {{ user }} </span>{% else %}
                     <a href="{% url 'login' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONECTARSE</button></a>{% endif %}
                 </ul>
@@ -45,23 +45,11 @@
         </nav>
     </div>
 
-
-
-
-    <div id="div2">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{% static 'img/hospital-noticia.jpg' %}" class="d-block w-100" alt="Florida">
-                </div>
-            </div>
-        </div>
+    <div id="divcontactos">
+        <h1>Te has deslogueado</h1>
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

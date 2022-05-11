@@ -24,8 +24,8 @@ def valores(request):
 def vision(request):
     return render(request, 'CesfamWeb/conozcanos/vision.html')
 
-def login(request):
-    return render(request, 'RegistroLogin/login.html')
+#def login(request):
+#    return render(request, 'RegistroLogin/login.html')
 
 def registro(request):
     return render(request, 'RegistroLogin/registro.html')
