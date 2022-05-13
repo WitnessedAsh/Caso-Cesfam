@@ -1,27 +1,18 @@
 from statistics import mode
 from django.db import models
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
 
 class TIPO_USUARIO(models.Model):
-    ID_TIPO_USU = models.IntegerField(primary_key=True,verbose_name='ID del tipo de usuario')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     NOM_TIPO_USU = models.CharField(max_length=50,verbose_name='Nombre del tipo de usuario')
-
-    def __str__(self):
-        return self.NOM_TIPO_USU
-
-
-class USUARIO(models.Model):
-    RUT_USU = models.CharField(max_length=9,primary_key=True, verbose_name='Rut (sin punto ni guión)')
-    PASS_USU = models.CharField(max_length=20,verbose_name='Contraseña')
-    NOM_USU = models.CharField(max_length=30,verbose_name='Nombre')
-    APE_USU = models.CharField(max_length=60,verbose_name='Apellidos')
-    MAIL_USU = models.CharField(max_length=100,verbose_name='Mail')
-    NUMTEL_USU = models.IntegerField(verbose_name='Teléfono')
-    DIREC_USU = models.CharField(max_length=300,verbose_name='Dirección')
-    TIPO_USUARIO = models.ForeignKey(TIPO_USUARIO,on_delete=models.CASCADE,verbose_name='Tipo de usario')
-
-    def __str__(self):
-        return self.RUT_USU
+    def getTipo(id):
+        try:
+            t=User.objects.get(pk=id)
+            tipo = t.tipo_usuario.tipo
+            return tipo
+        except TIPO_USUARIO.DoesNotExist:
+            return None
 
 class TUTOR(models.Model):
     rut_tutor = models.CharField(max_length=9,primary_key=True, verbose_name='Rut (sin punto ni guión) del paciente')
@@ -57,10 +48,10 @@ class PRESCRIPCION(models.Model):
     id_prescripcion = models.IntegerField(primary_key=True,verbose_name='Id de la prescripcion')
     desc_prescripcion = models.CharField(max_length=9999,verbose_name='Descripcion de la prescripcion')
     fecha_emision = models.DateField(null=True,blank=True,verbose_name='Fecha de emision')
-    medico = models.ForeignKey(USUARIO,on_delete=models.CASCADE,verbose_name='Medico')
+    medico = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Medico')
     nombre_paciente = models.ForeignKey(PACIENTE,on_delete=models.CASCADE,verbose_name='Paciente')
     
     def __str__(self):
-        return self.id_prescripcion
+        return self.desc_prescripcion
 
 
