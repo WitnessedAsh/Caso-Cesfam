@@ -14,32 +14,39 @@
             const baseDeDatos = [{
                     id: 1,
                     nombre: 'Paracetamol',
+                    precio: 100,
                     unidad: 1,
                 }, {
                     id: 2,
                     nombre: 'Antidiarrea',
+                    precio: 150,
                     unidad: 1,
                 }, {
                     id: 3,
                     nombre: 'Loratadina',
+                    precio: 300,
                     unidad: 1,
                 }, {
                     id: 4,
                     nombre: 'OmegaLol',
+                    precio: 15000,
                     unidad: 1,
                 }, {
                     id: 5,
                     nombre: 'Hibuprofen',
+                    precio: 1000,
                     unidad: 1,
                 }, {
                     id: 6,
                     nombre: 'CuraTodo',
+                    precio: 9999,
                     unidad: 1,
                 }
 
             ];
 
             let reserva = [];
+            const divisa = '$';
             const DOMitems = document.querySelector('#items');
             const DOMreserva = document.querySelector('#resevas');
             const DOMtotal = document.querySelector('#total');
@@ -62,6 +69,10 @@
                     const miNodoTitle = document.createElement('h5');
                     miNodoTitle.classList.add('card-title');
                     miNodoTitle.textContent = info.nombre;
+                    // Precio
+                    const miNodoPrecio = document.createElement('p');
+                    miNodoPrecio.classList.add('card-text');
+                    miNodoPrecio.textContent = `${divisa}${info.precio}`;
                     // Boton 
                     const miNodoBoton = document.createElement('button');
                     miNodoBoton.classList.add('btn', 'btn-primary');
@@ -70,6 +81,7 @@
                     miNodoBoton.addEventListener('click', anyadirMedicamentoAlaReserva);
                     // Insertamos
                     miNodoCardBody.appendChild(miNodoTitle);
+                    miNodoCardBody.appendChild(miNodoPrecio);
                     miNodoCardBody.appendChild(miNodoBoton);
                     miNodo.appendChild(miNodoCardBody);
                     DOMitems.appendChild(miNodo);
