@@ -13,6 +13,8 @@ class TIPO_USUARIO(models.Model):
             return tipo
         except TIPO_USUARIO.DoesNotExist:
             return None
+    def __str__(self):
+        return self.NOM_TIPO_USU
 
 class TUTOR(models.Model):
     rut_tutor = models.CharField(max_length=9,primary_key=True, verbose_name='Rut (sin punto ni guión) del paciente')
