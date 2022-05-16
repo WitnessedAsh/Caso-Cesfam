@@ -23,21 +23,24 @@
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <a href="{%url 'home'%}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">INICIO</button></a>
+                    <a href="{%url 'home'%}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">INICIO</button></a>{% if request.user.is_authenticated %}
                     <div class="dropdown">
-                        <a href="{%url 'hospitales'%}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HOSPITALES</button></a>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CONÓZCANOS</button>
+                        <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MEDICAMENTO</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href="{%url 'vision'%}"><button class="btn dropdown-item algo" type="button">VISIÓN</button></a>
-                            <a href="{%url 'mision'%}"><button class="btn dropdown-item algo" type="button">MISIÓN</button></a>
-                            <a href="{%url 'valores'%}"><button class="btn dropdown-item algo" type="button">VALORES</button></a>
-                            <a href="{%url 'equipo'%}"><button class="btn dropdown-item algo" type="button">EQUIPO</button></a>
+                            <a href=""><button class="btn dropdown-item algo" type="button">AGREGAR</button></a>
+                            <a href="{%url 'reserva'%}"><button class="btn dropdown-item algo" type="button">RESERVAR</button></a>
+                            <a href="{%url 'listmedicamentos'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a>
+                            <a href=""><button class="btn dropdown-item algo" type="button">CADUCAR</button></a>
                         </div>
                     </div>
-                    <a href="{%url 'contacto'%}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONTACTO</button></a> {% if request.user.is_authenticated %}
-                    <a href="{% url 'login' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">SALIR</button></a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRESCRIPCION</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <a href=""><button class="btn dropdown-item algo" type="button">REVISAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
+                            <a href=""><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% endif %}
+                        </div>
+                    </div>{% endif %} {% if request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">SALIR</button></a>
                     <span class="badge red z-depth-1 mr-1"> {{ user }} </span>{% else %}
                     <a href="{% url 'login' %}"><button class="btn btn-secondary algo" type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">CONECTARSE</button></a>{% endif %}
                 </ul>
