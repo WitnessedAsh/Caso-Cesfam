@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Variables
+            const baseDeDatos = [{
+                    id: 1,
+                    nombre: 'Paracetamol',
+                    precio: 100,
+                    unidad: 1,
+                }, {
+                    id: 2,
+                    nombre: 'Antidiarrea',
+                    precio: 150,
+                    unidad: 1,
+                }, {
+                    id: 3,
+                    nombre: 'Loratadina',
+                    precio: 300,
+                    unidad: 1,
+                }, {
+                    id: 4,
+                    nombre: 'OmegaLol',
+                    precio: 15000,
+                    unidad: 1,
+                }, {
+                    id: 5,
+                    nombre: 'Hibuprofen',
+                    precio: 1000,
+                    unidad: 1,
+                }, {
+                    id: 6,
+                    nombre: 'CuraTodo',
+                    precio: 9999,
+                    unidad: 1,
+                }
+
+            ];
+
+            let reserva = [];
+            const divisa = '$';
+            const DOMitems = document.querySelector('#items');
+            const DOMreserva = document.querySelector('#resevas');
+            const DOMtotal = document.querySelector('#total');
+            const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+
+            // Funciones
+
+            /**
+             * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
+             */
+            function renderizarMedicamentos() {
+                baseDeDatos.forEach((info) => {
+                    // Estructura
+                    const miNodo = document.createElement('div');
+                    miNodo.classList.add('card', 'col-sm-4');
+                    // Body
+                    const miNodoCardBody = document.createElement('div');
+                    miNodoCardBody.classList.add('card-body');
+                    // Titulo
+                    const miNodoTitle = document.createElement('h5');
+                    miNodoTitle.classList.add('card-title');
+                    miNodoTitle.textContent = info.nombre;
+                    // Precio
+                    const miNodoPrecio = document.createElement('p');
+                    miNodoPrecio.classList.add('card-text');
+                    miNodoPrecio.textContent = `${divisa}${info.precio}`;
+                    // Boton 
+                    const miNodoBoton = document.createElement('button');
+                    miNodoBoton.classList.add('btn', 'btn-primary');
+                    miNodoBoton.textContent = '+';
+                    miNodoBoton.setAttribute('marcador', info.id);
+                    miNodoBoton.addEventListener('click', anyadirMedicamentoAlaReserva);
+                    // Insertamos
+                    miNodoCardBody.appendChild(miNodoTitle);
+                    miNodoCardBody.appendChild(miNodoPrecio);
+                    miNodoCardBody.appendChild(miNodoBoton);
+                    miNodo.appendChild(miNodoCardBody);
+                    DOMitems.appendChild(miNodo);
+                });
+            }
+
+            /**
+             * Evento para añadir un producto al carrito de la compra
+             */
+            function anyadirMedicamentoAlaReserva(evento) {
+                // Anyadimos el Nodo a nuestra reserva
+                reserva.push(evento.target.getAttribute('marcador'))
+                    // Actualizamos la reserva
+                renderizarReserva();
+
+            }
+
+            /**
+             * Dibuja todos los productos guardados en el carrito
+             */
+            function renderizarReserva() {
+                // Vaciamos todo el html
+                DOMreserva.textContent = '';
+                // Quitamos los duplicados
+                const reservaSinDuplicados = [...new Set(reserva)];
+                // Generamos los Nodos a partir de carrito
+                reservaSinDuplicados.forEach((item) => {
+                    // Obtenemos el item que necesitamos de la variable base de datos
+                    const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                        // ¿Coincide las id? Solo puede existir un caso
+                        return itemBaseDatos.id === parseInt(item);
+                    });
+                    // Cuenta el número de veces que se repite el producto
+                    const numeroUnidadesItem = reserva.reduce((total, itemId) => {
+                        // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                        return itemId === item ? total += 1 : total;
+                    }, 0);
+                    // Creamos el nodo del item del carrito
+                    const miNodo = document.createElement('li');
+                    miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                    miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].unidad}`;
+                    // Boton de borrar
+                    const miBoton = document.createElement('button');
+                    miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                    miBoton.textContent = 'X';
+                    miBoton.style.marginLeft = '1rem';
+                    miBoton.dataset.item = item;
+                    miBoton.addEventListener('click', borrarItemReserva);
+                    // Mezclamos nodos
+                    miNodo.appendChild(miBoton);
+                    DOMreserva.appendChild(miNodo);
+                });
+                // Renderizamos el precio total en el HTML
+                DOMtotal.textContent = calcularTotal();
+            }
+
+            /**
+             * Evento para borrar un elemento del carrito
+             */
+            function borrarItemReserva(evento) {
+                // Obtenemos el producto ID que hay en el boton pulsado
+                const id = evento.target.dataset.item;
+                // Borramos todos los productos
+                reserva = reserva.filter((reservaId) => {
+                    return reservaId !== id;
+                });
+                // volvemos a renderizar
+                renderizarReserva();
+            }
+
+            /**
+             * Calcula el precio total teniendo en cuenta los productos repetidos
+             */
+            function calcularTotal() {
+                // Recorremos el array del carrito 
+                return reserva.reduce((total, item) => {
+                    // De cada elemento obtenemos su precio
+                    const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                        return itemBaseDatos.id === parseInt(item);
+                    });
+                    // Los sumamos al total
+                    return total + miItem[0].unidad;
+                }, 0).toFixed(2);
+            }
+
+            /**
+             * Varia el carrito y vuelve a dibujarlo
+             */
+            function vaciarReserva() {
+                // Limpiamos los productos guardados
+                reserva = [];
+                // Renderizamos los cambios 
+                renderizarReserva();
+            }
+
+            // Eventos
+            DOMbotonVaciar.addEventListener('click', vaciarReserva);
+
+            // Inicio
+            renderizarMedicamentos();
+            renderizarReserva();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-sm-8 row"></main>
+            <!-- Carrito -->
+            <aside class="col-sm-4">
+                <h2>Reserva</h2>
+                <!-- Elementos del carrito -->
+                <ul id="reserva" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: <span id="total"></span></p>
+                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+            </aside>
+        </div>
+    </div>
+</body>
+
+</html>
