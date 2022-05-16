@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap-->
-    <link rel="stylesheet" href="{% static 'letreros/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'letreros/css/style.css' %}">
-    <!--Js-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--Styles-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <title>LETREROS</title>
+    <title>Cesfam</title>
 </head>
 
 <body>
@@ -47,13 +47,42 @@
             </div>
         </nav>
     </div>
-
+    <!--!!!FORMULARIO!!!-->
+    {% load crispy_forms_tags %}
     <div id="divcontactos">
-        <h1>Te has deslogueado</h1>
+        <form method="post" action="agregar_medicamento" id="formulario" method="POST">{% csrf_token %}
+            <div class="mb-3">
+                <label for="txtIDmed" class="form-label">ID Medicamento</label>
+                <input type="number" class="form-control" name="txtIDmed" id="txtIDmed" />
+            </div>
+            <div class="mb-3">
+                <label for="txtNOMmed" class="form-label">Nombre Medicamento</label>
+                <input type="text" class="form-control" name="txtNOMmed" id="txtNOMmed" />
+            </div>
+            <div class="mb-3">
+                <label for="txtPREmed" class="form-label">Precio Medicamento</label>
+                <input type="number" class="form-control" name="txtPREmed" id="txtPREmed" />
+            </div>
+            <div class="mb-3">
+                <label for="txtSTOmed" class="form-label">Stock Medicamento</label>
+                <input type="number" class="form-control" name="txtSTOmed" id="txtSTOmed" />
+            </div>
+            <div class="mb-3">
+                <label for="txtESTmed" class="form-label">Estado Medicamento</label>
+                <input type="text" class="form-control" name="txtESTmed" id="txtESTmed" />
+            </div>
+            <div class="mb-3">
+                <label for="txtGRMmed" class="form-label">Gramos Medicamento</label>
+                <input type="number" class="form-control" name="txtGRMmed" id="txtGRMmed" />
+            </div>
+            <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
+            <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}
+            <div id="error" class="alert alert-success" role="alert">
+                {{ mensaje }}
+            </div>
+            {% endif %}
+        </form>
     </div>
-
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

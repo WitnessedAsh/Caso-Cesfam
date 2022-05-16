@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'CesfamApp',
     'rest_framework',
     'rest_framework.authtoken',
+    'crispy_forms',
     'rest_medicamento'
 ]
 

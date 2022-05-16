@@ -6,6 +6,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
   path('',home,name="home"),
   #Medicamentos
+  path('form_medicamento',agregarmed,name="form_medicamento"),
   path('listmedicamentos',listmedicamentos,name="listmedicamentos"),
   path('reserva',reserva,name="reserva"),
   #Loguear y Desloguear
