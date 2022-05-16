@@ -51,23 +51,25 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Fabricante</th>
-                    <th scope="col">Contenido</th>
-                    <th scope="col">Gramaje</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Gramos</th>
                 </tr>
             </thead>
             <tbody>
+                {% for m in MEDICAMENTO%}
                 <tr>
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th>{{m.id_medicamento}}</th>
+                    <td>{{m.nombre_medicamento}}</td>
+                    <td>{{m.precio_medicamento}}</td>
+                    <td>{{m.stock_medicamento}}</td>
+                    <td>{{m.estado_medicamento}}</td>
+                    <td>{{m.gramos_medicamento}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

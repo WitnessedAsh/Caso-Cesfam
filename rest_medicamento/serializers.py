@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from CesfamApp.models import MEDICAMENTO, PRESCRIPCION
+from CesfamApp.models import MEDICAMENTO, PRESCRIPCION, PACIENTE
 
 class MedicamentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +11,8 @@ class PrescripcionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PRESCRIPCION
         fields = ['id_prescripcion','desc_prescripcion','fecha_emision','medico','nombre_paciente']
+
+class PacienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PACIENTE
+        fields = ['rut_pac','nombre_pac','correo_pac','numero_pac']
