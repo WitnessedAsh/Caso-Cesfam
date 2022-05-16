@@ -50,7 +50,7 @@
     <!--!!!FORMULARIO!!!-->
     {% load crispy_forms_tags %}
     <div id="divcontactos">
-        <form method="post" action="agregar_medicamento" id="formulario" method="POST">{% csrf_token %}
+        <form method="post" action="form_medicamento" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
                 <label for="txtIDmed" class="form-label">ID Medicamento</label>
                 <input type="number" class="form-control" name="txtIDmed" id="txtIDmed" />
