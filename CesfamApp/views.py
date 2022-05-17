@@ -17,7 +17,29 @@ def reserva(request):
 def agregarmed(request):
     return render(request, 'Forms/form_medicamento.html') 
 
+def modificarmed(request):
+    return render(request, 'Forms/form_mod_medicamento.html') 
 
+def eliminarmed(request):
+    return render(request, 'CesfamWeb/listmedicamentos.html') 
+
+def agregarpre(request):
+    return render(request, 'Forms/form_prescripcion.html') 
+
+def modificarpre(request):
+    return render(request, 'Forms/form_mod_prescripcion.html') 
+
+def eliminarpre(request):
+    return render(request, 'CesfamWeb/listprescripciones.html') 
+
+def agregarpac(request):
+    return render(request, 'Forms/form_paciente.html') 
+
+def modificarpac(request):
+    return render(request, 'Forms/form_mod_paciente.html') 
+
+def eliminarpac(request):
+    return render(request, 'CesfamWeb/listpacientes.html')         
 # --- MEDICAMENTO ---
 #AGREGAR
 def form_med(request):
@@ -34,6 +56,22 @@ def form_med(request):
             datos['mensaje'] = 'ERROR: No se ha guardado el producto, intente nuevamente'
     return render(request,'Forms/form_medicamento.html',datos)
 
+#MODIFICAR
+def form_mod_med(request,id):
+    medicamento = MEDICAMENTO.objects.get(id_medicamento = id)
+    datos = {
+        'form':MEDICAMENTOFORM(instance=medicamento)
+    }
+    if(request.method == 'POST'):
+        formulario = MEDICAMENTOFORM(request.POST, request.FILES,instance=medicamento)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = 'Modicado correctamente'
+        else:
+            formulario = MEDICAMENTOFORM()
+            datos['mensaje'] = 'ERROR: No se ha modicado el producto, intente nuevamente'
+    return render(request,'Forms/form_mod_medicamento.html',datos)
+
 #ELIMINAR
 def form_del_medicamento(request, id):
     medicamento = MEDICAMENTO.objects.get(id_medicamento=id)
@@ -43,11 +81,19 @@ def form_del_medicamento(request, id):
 
 #LIST
 def listmedicamentos(request):
-    medicamento = MEDICAMENTO.objects.all 
+    medicamento = MEDICAMENTO.objects.all
     datos = {
         'contacto': medicamento
     }
     return render(request,'CesfamWeb/listmedicamentos.html',datos)
+
+#--De prueba-- Si se consigue base de dato
+#def listmedicamentos(request):
+#    medicamento = MEDICAMENTO.objects.raw('SELECT * FROM (MODELO) order by id)
+#    datos = {
+#        'contacto': medicamento
+#    }
+#    return render(request,'CesfamWeb/listmedicamentos.html',datos)
 
 # --- PRESCRIPCION ---
 #AGREGAR
@@ -62,16 +108,47 @@ def form_pre(request):
             datos['mensaje'] = 'Guardado correctamente'
         else:
             formulario = PRESCRIPCIONFORM()
-            datos['mensaje'] = 'ERROR: No se ha guardado el producto, intente nuevamente'
-    return render(request,'Forms/',datos)
+            datos['mensaje'] = 'ERROR: No se ha guardado la prescripcion, intente nuevamente'
+    return render(request,'Forms/form_prescripcion.html',datos)
+
+#MODIFICAR
+def form_mod_pre(request,id):
+    prescripcion = PRESCRIPCION.objects.get(id_prescripcion = id)
+    datos = {
+        'form':PRESCRIPCIONFORM(instance=prescripcion)
+    }
+    if(request.method == 'POST'):
+        formulario = PRESCRIPCIONFORM(request.POST, request.FILES, instance=prescripcion)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = 'Modicado correctamente'
+        else:
+            formulario = PRESCRIPCIONFORM()
+            datos['mensaje'] = 'ERROR: No se ha modicado la prescripcion, intente nuevamente'
+    return render(request,'Forms/form_mod_prescripcion.html',datos)
 
 #ELIMINAR
 def form_del_prescripcion(request, id):
-    medicamento = PRESCRIPCION.objects.get(id_medicamento=id)
-    medicamento.delete()
+    prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id)
+    prescripcion.delete()
 
-    return redirect(to='CesfamWeb/')
+    return redirect(to='CesfamWeb/listprescripciones.html')
 
+#LIST
+def listprescripciones(request):
+    prescripcion = PRESCRIPCION.objects.all
+    datos = {
+        'contacto': prescripcion
+    }
+    return render(request,'CesfamWeb/listprescripciones.html',datos)
+
+#--De prueba-- Si se consigue base de dato
+#def listprescripciones(request):
+#    prescripcion = PRESCRIPCION.objects.objects.raw('SELECT * FROM (MODELO) order by id')
+#    datos = {
+#        'contacto': prescripcion
+#    }
+#    return render(request,'CesfamWeb/listprescripciones.html',datos)
 # --- PACIENTE ---
 #AGREGAR
 def form_pac(request):
@@ -85,12 +162,44 @@ def form_pac(request):
             datos['mensaje'] = 'Guardado correctamente'
         else:
             formulario = PACIENTEFORM()
-            datos['mensaje'] = 'ERROR: No se ha guardado el producto, intente nuevamente'
-    return render(request,'Forms/',datos)
-    
+            datos['mensaje'] = 'ERROR: No se ha guardado al paciente, intente nuevamente'
+    return render(request,'Forms/form_paciente.html',datos)
+
+def form_mod_pac(request,id):
+    paciente = PACIENTE.objects.get(rut_pac = id)
+    datos = {
+        'form':PACIENTEFORM(instance=paciente)
+    }
+    if(request.method == 'POST'):
+        formulario = PACIENTEFORM(request.POST, request.FILES,instance=paciente)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = 'Modicado correctamente'
+        else:
+            formulario = PACIENTEFORM()
+            datos['mensaje'] = 'ERROR: No se ha modicado al paciente, intente nuevamente'
+    return render(request,'Forms/form_mod_paciente.html',datos)
+
 #ELIMINAR
 def form_del_paciente(request, id):
-    medicamento = PACIENTE.objects.get(id_medicamento=id)
-    medicamento.delete()
+    paciente = PACIENTE.objects.get(rut_pac=id)
+    paciente.delete()
 
-    return redirect(to='CesfamWeb/')
+    return redirect(to='CesfamWeb/listpacientes.html')
+
+#LIST
+def listpacientes(request):
+    paciente = PRESCRIPCION.objects.all
+    datos = {
+        'contacto': paciente
+    }
+    return render(request,'CesfamWeb/listpacientes.html',datos)
+
+#--De prueba-- Si se consigue base de dato
+#def listpacientes(request):
+#    paciente = PRESCRIPCION.objects.objects.raw('SELECT * FROM (MODELO) order by id')
+#    datos = {
+#        'contacto': paciente
+#    }
+#    return render(request,'CesfamWeb/listpacientes.html',datos)
+    

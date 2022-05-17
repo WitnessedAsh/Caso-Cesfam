@@ -52,29 +52,27 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Gramos</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">FECHA DE EMISION</th>
+                    <th scope="col">MEDICO</th>
+                    <th scope="col">PACIENTE</th>
                     <th scope="col">Modificar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                {% for m in MEDICAMENTO%}
+                {% for pre in PRESCRIPCION%}
                 <tr>
-                    <th>{{m.id_medicamento}}</th>
-                    <td>{{m.nombre_medicamento}}</td>
-                    <td>{{m.precio_medicamento}}</td>
-                    <td>{{m.stock_medicamento}}</td>
-                    <td>{{m.estado_medicamento}}</td>
-                    <td>{{m.gramos_medicamento}}</td>
+                    <th>{{pre.id_prescripcion}}</th>
+                    <td>{{pre.desc_prescripcion}}</td>
+                    <td>{{pre.fecha_emision}}</td>
+                    <td>{{pre.medico}}</td>
+                    <td>{{pre.nombre_paciente}}</td>
                     <td>
-                        <a href="{%url 'form_mod_medicamento' m.id_medicamento %}">Modificar</a>
+                        <a href="{%url 'form_mod_prescripcion' pre.id_prescripcion %}">Modificar</a>
                     </td>
                     <td>
-                        <a href="{%url 'form_del_medicamento' m.id_medicamento %}">Eliminar</a>
+                        <a href="{%url 'form_del_prescripcion' pre.id_prescripcion %}">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}

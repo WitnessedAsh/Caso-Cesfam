@@ -47,39 +47,33 @@
             </div>
         </nav>
     </div>
-    <div id="divlist">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Gramos</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for m in MEDICAMENTO%}
-                <tr>
-                    <th>{{m.id_medicamento}}</th>
-                    <td>{{m.nombre_medicamento}}</td>
-                    <td>{{m.precio_medicamento}}</td>
-                    <td>{{m.stock_medicamento}}</td>
-                    <td>{{m.estado_medicamento}}</td>
-                    <td>{{m.gramos_medicamento}}</td>
-                    <td>
-                        <a href="{%url 'form_mod_medicamento' m.id_medicamento %}">Modificar</a>
-                    </td>
-                    <td>
-                        <a href="{%url 'form_del_medicamento' m.id_medicamento %}">Eliminar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <!--!!!FORMULARIO!!!-->
+    {% load crispy_forms_tags %}
+    <div id="divcontactos">
+        <form method="post" action="form_mod_paciente" id="formulario" method="POST">{% csrf_token %}
+            <div class="mb-3">
+                <label for="txtRUTpac" class="form-label">Rut</label>
+                <input type="text" class="form-control" name="txtRUTpac" id="txtRUTpac" />
+            </div>
+            <div class="mb-3">
+                <label for="txtNOMpac" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="txtNOMpac" id="txtNOMpac" />
+            </div>
+            <div class="mb-3">
+                <label for="txtEMAILpac" class="form-label">Correo</label>
+                <input type="text" class="form-control" name="txtEMAILpac" id="txtEMAILpac" />
+            </div>
+            <div class="mb-3">
+                <label for="txtNUMpac" class="form-label">Numero telefonico</label>
+                <input type="number" class="form-control" name="txtNUMpac" id="txtNUMpac" />
+            </div>
+            <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
+            <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}
+            <div id="error" class="alert alert-success" role="alert">
+                {{ mensaje }}
+            </div>
+            {% endif %}
+        </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

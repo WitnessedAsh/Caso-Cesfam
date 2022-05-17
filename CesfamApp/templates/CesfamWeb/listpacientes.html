@@ -51,30 +51,26 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Gramos</th>
+                    <th scope="col">RUT</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">CORREO</th>
+                    <th scope="col">TELEFONO(NUMERO)</th>
                     <th scope="col">Modificar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                {% for m in MEDICAMENTO%}
+                {% for pac in PACIENTE%}
                 <tr>
-                    <th>{{m.id_medicamento}}</th>
-                    <td>{{m.nombre_medicamento}}</td>
-                    <td>{{m.precio_medicamento}}</td>
-                    <td>{{m.stock_medicamento}}</td>
-                    <td>{{m.estado_medicamento}}</td>
-                    <td>{{m.gramos_medicamento}}</td>
+                    <th>{{pac.rut_pac}}</th>
+                    <td>{{pac.nombre_pac}}</td>
+                    <td>{{pac.correo_pac}}</td>
+                    <td>{{pac.numero_pac}}</td>
                     <td>
-                        <a href="{%url 'form_mod_medicamento' m.id_medicamento %}">Modificar</a>
+                        <a href="{%url 'form_mod_paciente' pac.rut_pac %}">Modificar</a>
                     </td>
                     <td>
-                        <a href="{%url 'form_del_medicamento' m.id_medicamento %}">Eliminar</a>
+                        <a href="{%url 'form_del_paciente' pac.rut_pac %}">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
