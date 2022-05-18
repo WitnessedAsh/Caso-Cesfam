@@ -48,32 +48,31 @@
         </nav>
     </div>
     <!--!!!FORMULARIO!!!-->
-    {% load crispy_forms_tags %}
     <div id="divcontactos">
         <form method="post" action="form_medicamento" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
                 <label for="txtIDmed" class="form-label">ID Medicamento</label>
-                <input type="number" class="form-control" name="txtIDmed" id="txtIDmed" />
+                <input type="number" class="form-control" name="IDmed" id="IDmed" />
             </div>
             <div class="mb-3">
                 <label for="txtNOMmed" class="form-label">Nombre Medicamento</label>
-                <input type="text" class="form-control" name="txtNOMmed" id="txtNOMmed" />
+                <input type="text" class="form-control" name="NOMmed" id="NOMmed" />
             </div>
             <div class="mb-3">
                 <label for="txtPREmed" class="form-label">Precio Medicamento</label>
-                <input type="number" class="form-control" name="txtPREmed" id="txtPREmed" />
+                <input type="number" class="form-control" name="PREmed" id="PREmed" />
             </div>
             <div class="mb-3">
                 <label for="txtSTOmed" class="form-label">Stock Medicamento</label>
-                <input type="number" class="form-control" name="txtSTOmed" id="txtSTOmed" />
+                <input type="number" class="form-control" name="STOmed" id="STOmed" />
             </div>
             <div class="mb-3">
                 <label for="txtESTmed" class="form-label">Estado Medicamento</label>
-                <input type="text" class="form-control" name="txtESTmed" id="txtESTmed" />
+                <input type="text" class="form-control" name="ESTmed" id="ESTmed" />
             </div>
             <div class="mb-3">
                 <label for="txtGRMmed" class="form-label">Gramos Medicamento</label>
-                <input type="number" class="form-control" name="txtGRMmed" id="txtGRMmed" />
+                <input type="number" class="form-control" name="GRMmed" id="GRMmed" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
             <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}

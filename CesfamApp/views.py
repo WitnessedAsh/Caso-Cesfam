@@ -14,7 +14,7 @@ def home(request):
 def reserva(request):
     return render(request, 'CesfamWeb/reserva.html')   
 
-def agregarmed(request):
+#def form_medicamento(request):
     return render(request, 'Forms/form_medicamento.html') 
 
 def modificarmed(request):
@@ -46,6 +46,8 @@ def form_med(request):
     datos = {
         'form':MEDICAMENTOFORM()
     }
+    if request.method == 'GET':
+        return render(request, "Forms/form_medicamento.html")
     if(request.method == 'POST'):
         formulario = MEDICAMENTOFORM(request.POST, request.FILES)
         if formulario.is_valid():
@@ -55,6 +57,18 @@ def form_med(request):
             formulario = MEDICAMENTOFORM()
             datos['mensaje'] = 'ERROR: No se ha guardado el producto, intente nuevamente'
     return render(request,'Forms/form_medicamento.html',datos)
+
+def form_medicamento(request):
+    if request.method == 'GET':
+        return render(request, "Forms/form_medicamento.html")
+    if request.method == 'POST':
+        id_medicamento	= request.POST['IDmed']
+        nombre_medicamento = request.POST['NOMmed'] 
+        precio_medicamento = request.POST['PREmed'] 
+        stock_medicamento	= request.POST['STOmed'] 
+        estado_medicamento = request.POST['ESTmed'] 
+        gramos_medicamento = request.POST['GRMmed']
+        medicamento = MEDICAMENTO.objects.create(id_medicamento=id_medicamento, nombre_medicamento=nombre_medicamento, precio_medicamento=precio_medicamento, stock_medicamento=stock_medicamento, estado_medicamento=estado_medicamento, gramos_medicamento=gramos_medicamento)
 
 #MODIFICAR
 def form_mod_med(request,id):

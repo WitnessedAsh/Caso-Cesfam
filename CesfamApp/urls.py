@@ -6,7 +6,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
   path('',home,name="home"),
   #Medicamentos
-  path('agregar-medicamento',agregarmed,name="form_medicamento"),
+  path('form_med',form_med,name="form_med"),
+  path('form_medicamento',form_medicamento,name="form_medicamento"),
   path('modificar-medicamento/<id>',modificarmed,name="form_mod_medicamento"),
   path('eliminar-medicamento/<id>',eliminarmed,name="form_del_medicamento"),
   #path('agregar-medicamento',form_med,name="form_medicamento"), <-- Probar por si acaso

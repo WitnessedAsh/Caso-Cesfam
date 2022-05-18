@@ -38,20 +38,20 @@ class PACIENTE(models.Model):
 class MEDICAMENTO(models.Model):
     id_medicamento = models.IntegerField(primary_key=True,verbose_name='Id de medicamento')
     nombre_medicamento = models.CharField(max_length=50,verbose_name='Nombre del medicamento')
-    precio_medicamento = models.IntegerField(max_length=8,verbose_name='Precio del medicamento')
-    stock_medicamento = models.IntegerField(max_length=6,verbose_name='Stock del medicamento')
+    precio_medicamento = models.IntegerField(verbose_name='Precio del medicamento')
+    stock_medicamento = models.IntegerField(verbose_name='Stock del medicamento')
     estado_medicamento = models.CharField(max_length=12,verbose_name='Estado del medicamento')
-    gramos_medicamento = models.IntegerField(max_length=4,verbose_name='Gramos del medicamento')
+    gramos_medicamento = models.IntegerField(verbose_name='Gramos del medicamento')
 
     def __str__(self):
         return self.nombre_medicamento
 
 class PRESCRIPCION(models.Model):
     id_prescripcion = models.IntegerField(primary_key=True,verbose_name='Id de la prescripcion')
-    desc_prescripcion = models.CharField(max_length=9999,verbose_name='Descripcion de la prescripcion')
+    desc_prescripcion = models.CharField(max_length=500,verbose_name='Descripcion de la prescripcion')
     fecha_emision = models.DateField(null=True,blank=True,verbose_name='Fecha de emision')
     medico = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Medico')
-    nombre_paciente = models.ForeignKey(PACIENTE,on_delete=models.CASCADE,verbose_name='Paciente')
+    nombre_pac = models.ForeignKey(PACIENTE,on_delete=models.CASCADE,verbose_name='Paciente')
     
     def __str__(self):
         return self.desc_prescripcion
