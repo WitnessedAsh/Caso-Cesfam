@@ -56,18 +56,7 @@ def form_mod_medicamento(request, id_medicamento):
         medicamento.estado_medicamento = estado_medicamento
         medicamento.gramos_medicamento = gramos_medicamento
         medicamento.save()  
-
-<<<<<<< HEAD
-        medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
-        medicamento.precio_medicamento = precio_medicamento
-        medicamento.stock_medicamento = stock_medicamento
-        medicamento.estado_medicamento = estado_medicamento
-        medicamento.save()  
-
-        return redirect('form_mod_medicamento')
-=======
         return redirect('listmedicamentos')
->>>>>>> Diego
 
 #ELIMINAR
 def form_del_medicamento(request, id_medicamento):
