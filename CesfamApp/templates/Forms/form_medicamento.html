@@ -37,13 +37,12 @@
                             <a href="{%url 'form_medicamento'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a>
                             <a href="{%url 'reserva'%}"><button class="btn dropdown-item algo" type="button">RESERVAR</button></a>
                             <a href="{%url 'listmedicamentos'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a>
-                            <a href=""><button class="btn dropdown-item algo" type="button">CADUCAR</button></a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRESCRIPCION</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href="{%url 'form_prescripcion'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
+                            <a href="{%url 'form_pre'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
                             <a href="{%url 'listprescripciones'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a> {% endif %}
                         </div>
                     </div>{% endif %} {% if request.user.is_authenticated %}

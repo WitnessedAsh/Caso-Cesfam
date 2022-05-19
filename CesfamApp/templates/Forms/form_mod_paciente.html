@@ -37,13 +37,12 @@
                             <a href="{%url 'form_medicamento'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a>
                             <a href="{%url 'reserva'%}"><button class="btn dropdown-item algo" type="button">RESERVAR</button></a>
                             <a href="{%url 'listmedicamentos'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a>
-                            <a href=""><button class="btn dropdown-item algo" type="button">CADUCAR</button></a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRESCRIPCION</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href="{%url 'form_prescripcion'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
+                            <a href="{%url 'form_pre'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
                             <a href="{%url 'listprescripciones'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a> {% endif %}
                         </div>
                     </div>{% endif %} {% if request.user.is_authenticated %}
@@ -56,17 +55,21 @@
     </div>
     <!--!!!FORMULARIO!!!-->
     <div id="divcontactos">
-        <form method="post" action="form_mod_paciente" id="formulario" method="POST">{% csrf_token %}
+        <form method="post" action="form_mod_pac" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
-                <label for="txtNOMpac" class="form-label">Nombre</label>
+                <label for="RUT" class="form-label">Rut</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.rut_pac}}" name="RUT" id="RUT" />
+            </div>
+            <div class="mb-3">
+                <label for="NOMpac" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="NOMpac" id="NOMpac" />
             </div>
             <div class="mb-3">
-                <label for="txtEMAILpac" class="form-label">Correo</label>
+                <label for="EMAIL" class="form-label">Correo</label>
                 <input type="text" class="form-control" name="EMAIL" id="EMAIL" />
             </div>
             <div class="mb-3">
-                <label for="txtNUMpac" class="form-label">Numero telefonico</label>
+                <label for="NUM" class="form-label">Numero telefonico</label>
                 <input type="text" class="form-control" name="NUM" id="NUM" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">

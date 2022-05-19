@@ -53,37 +53,23 @@
             </div>
         </nav>
     </div>
-    <div id="divlist">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">DESCRIPCION</th>
-                    <th scope="col">FECHA DE EMISION</th>
-                    <th scope="col">MEDICO</th>
-                    <th scope="col">PACIENTE</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pre in prescripcion%}
-                <tr>
-                    <th>{{pre.id_prescripcion}}</th>
-                    <td>{{pre.desc_prescripcion}}</td>
-                    <td>{{pre.fecha_emision}}</td>
-                    <td>{{pre.Username}}</td>
-                    <td>{{pre.rut_pac}}</td>
-                    <td>
-                        <a href="{%url 'form_mod_pre' pre.id_prescripcion %}">Modificar</a>
-                    </td>
-                    <td>
-                        <a href="{%url 'form_del_prescripcion' pre.id_prescripcion %}">Eliminar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <!--!!!FORMULARIO!!!-->
+    <div id="divcontactos">
+        <form method="post" action="notificarPac" id="formulario" method="POST">{% csrf_token %}
+            <div class="mb-3">
+                <label for="RUT" class="form-label">Rut</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.rut_pac}}" name="RUT" id="RUT" />
+            </div>
+            <div class="mb-3">
+                <label for="NOMpac" class="form-label">Nombre</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.nombre_pac}}" name="NOMpac" id="NOMpac" />
+            </div>
+            <div class="mb-3">
+                <label for="EMAIL" class="form-label">Correo</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.correo_pac}}" name="EMAIL" id="EMAIL" />
+            </div>
+            <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
+        </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

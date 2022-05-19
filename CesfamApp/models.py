@@ -50,8 +50,8 @@ class PRESCRIPCION(models.Model):
     id_prescripcion = models.IntegerField(primary_key=True,verbose_name='Id de la prescripcion')
     desc_prescripcion = models.CharField(max_length=500,verbose_name='Descripcion de la prescripcion')
     fecha_emision = models.DateField(null=True,blank=True,verbose_name='Fecha de emision')
-    medico = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Medico')
-    nombre_pac = models.ForeignKey(PACIENTE,on_delete=models.CASCADE,verbose_name='Paciente')
+    Username = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Medico')
+    rut_pac = models.ForeignKey(PACIENTE,on_delete=models.CASCADE,blank=True,null=True,verbose_name='Paciente')
     
     def __str__(self):
         return self.desc_prescripcion

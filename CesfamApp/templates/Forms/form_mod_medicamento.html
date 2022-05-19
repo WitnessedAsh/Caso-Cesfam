@@ -37,13 +37,12 @@
                             <a href="{%url 'form_medicamento'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a>
                             <a href="{%url 'reserva'%}"><button class="btn dropdown-item algo" type="button">RESERVAR</button></a>
                             <a href="{%url 'listmedicamentos'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a>
-                            <a href=""><button class="btn dropdown-item algo" type="button">CADUCAR</button></a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle algo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRESCRIPCION</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href="{%url 'form_prescripcion'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
+                            <a href="{%url 'form_pre'%}"><button class="btn dropdown-item algo" type="button">AGREGAR</button></a> {% if request.user.is_authenticated and perms.Admin %}
                             <a href="{%url 'listprescripciones'%}"><button class="btn dropdown-item algo" type="button">REVISAR</button></a> {% endif %}
                         </div>
                     </div>{% endif %} {% if request.user.is_authenticated %}
@@ -59,19 +58,27 @@
     <div id="divcontactos">
         <form method="post" action="form_mod_medicamento" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
-                <label for="txtPREmed" class="form-label">Precio Medicamento</label>
+                <label COLOR="white" for="IDmed" class="form-label">No se puede editar el ID</label>
+                <input readonly type="number" class="form-control" value="{{MEDICAMENTO.id_medicamento}}" name="IDmed" id="IDmed" />
+            </div>
+            <div class="mb-3">
+                <label for="NOMmed" class="form-label">Nombre Medicamento</label>
+                <input type="text" class="form-control" name="NOMmed" id="NOMmed" />
+            </div>
+            <div class="mb-3">
+                <label for="PREmed" class="form-label">Precio Medicamento</label>
                 <input type="number" class="form-control" name="PREmed" id="PREmed" />
             </div>
             <div class="mb-3">
-                <label for="txtSTOmed" class="form-label">Stock Medicamento</label>
+                <label for="STOmed" class="form-label">Stock Medicamento</label>
                 <input type="number" class="form-control" name="STOmed" id="STOmed" />
             </div>
             <div class="mb-3">
-                <label for="txtESTmed" class="form-label">Estado Medicamento</label>
+                <label for="ESTmed" class="form-label">Estado Medicamento</label>
                 <input type="text" class="form-control" name="ESTmed" id="ESTmed" />
             </div>
             <div class="mb-3">
-                <label for="txtGRMmed" class="form-label">Gramos Medicamento</label>
+                <label for="GRMmed" class="form-label">Gramos Medicamento</label>
                 <input type="number" class="form-control" name="GRMmed" id="GRMmed" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">

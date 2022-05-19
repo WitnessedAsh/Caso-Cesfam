@@ -8,28 +8,29 @@ urlpatterns = [
   #Medicamentos
   path('form_medicamento',form_medicamento,name="form_medicamento"),
   path('form_mod_medicamento/<id_medicamento>',form_mod_medicamento,name="form_mod_medicamento"),
-  path('eliminar-medicamento/<id>',eliminarmed,name="form_del_medicamento"),
+  path('form_del_medicamento/<id>',form_del_medicamento,name="form_del_medicamento"),
   #path('agregar-medicamento',form_med,name="form_medicamento"), <-- Probar por si acaso
   #path('modificar-medicamento/<id>',form_mod_med,name="form_mod_medicamento"), <-- Probar por si acaso
   #path('eliminar-medicamento/<id>',form_del_medicamento,name="form_del_medicamento"),
   path('listmedicamentos',listmedicamentos,name="listmedicamentos"),
   path('reserva',reserva,name="reserva"),
   #Prescripcion
-  path('agregar-prescripcion',agregarpre,name="form_prescripcion"),
-  path('modificar-prescripcion/<id>',modificarpre,name="form_mod_prescripcion"),
-  path('eliminar-prescripcion/<id>',eliminarpre,name="form_del_prescripcion"),
+  path('form_pre',form_pre,name="form_pre"),
+  path('form_mod_pre/<id>',form_mod_pre,name="form_mod_pre"),
+  path('form_del_prescripcion/<id>',form_del_prescripcion,name="form_del_prescripcion"),
   #path('agregar-prescripcion',form_pre,name="form_prescripcion"), <-- Probar por si acaso
   #path('modificar-prescripcion/<id>',form_mod_pre,name="form_mod_prescripcion"), <-- Probar por si acaso
   #path('eliminar-prescripcion/<id>',form_del_prescripcion,name="form_del_prescripcion"),
   path('listprescripciones',listprescripciones,name="listprescripciones"),
   #Paciente
   path('form_paciente',form_paciente,name="form_paciente"),
-  path('modificar-paciente/<id>',modificarpac,name="form_mod_paciente"),
-  path('eliminar-paciente/<id>',eliminarpac,name="form_del_paciente"),
+  path('form_mod_pac/<rut_pac>',form_mod_pac,name="form_mod_pac"),
+  path('form_del_paciente/<id>',form_del_paciente,name="form_del_paciente"),
   #path('agregar-paciente',form_pac,name="form_paciente"), <-- Probar por si acaso
   #path('modificar-paciente/<id>',form_mod_pac,name="form_mod_paciente"), <-- Probar por si acaso
   #path('eliminar-paciente/<id>',form_del_paciente,name="form_del_paciente"),
   path('listpacientes',listpacientes,name="listpacientes"),
+  path('notificarPac/<rut_pac>',notificarPac,name="notificarPac"),
   #Loguear y Desloguear
   path('login/', LoginView.as_view(template_name='RegistroLogin/login.html'),name="login"),
   path('logout/', LogoutView.as_view(template_name='RegistroLogin/logout.html'),name="logout"),
