@@ -66,11 +66,11 @@ def form_mod_medicamento(request, id_medicamento):
         stock_medicamento	= request.POST['STOmed'] 
         estado_medicamento = request.POST['ESTmed'] 
 
-        modmedi = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
-        modmedi.precio_medicamento = precio_medicamento
-        modmedi.stock_medicamento = stock_medicamento
-        modmedi.estado_medicamento = estado_medicamento
-        modmedi.save()  
+        medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
+        medicamento.precio_medicamento = precio_medicamento
+        medicamento.stock_medicamento = stock_medicamento
+        medicamento.estado_medicamento = estado_medicamento
+        medicamento.save()  
 
         return redirect('form_mod_medicamento')
 
