@@ -12,7 +12,7 @@ class MEDICAMENTOFORM(ModelForm):
 class PRESCRIPCIONFORM(ModelForm):
     class Meta:
         model = PRESCRIPCION
-        fields = ['id_prescripcion', 'desc_prescripcion', 'fecha_emision', 'medico','nombre_pac']
+        fields = ['id_prescripcion', 'desc_prescripcion', 'fecha_emision', 'Username','rut_pac']
 
 class PACIENTEFORM(ModelForm):
     class Meta:
