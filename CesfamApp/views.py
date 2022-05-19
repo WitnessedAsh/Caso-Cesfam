@@ -4,7 +4,8 @@ from .models import MEDICAMENTO, PRESCRIPCION, PACIENTE, TUTOR, TIPO_USUARIO
 from .forms import MEDICAMENTOFORM, PRESCRIPCIONFORM, PACIENTEFORM
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, permission_required 
-
+from django.core.mail import send_mail
+import datetime
 
 # Create your views here.
 
@@ -88,6 +89,26 @@ def listmedicamentos(request):
     }
     return render(request,'CesfamWeb/listmedicamentos.html',datos)
 
+#AVISAR
+def AvisoMedicamento(request, rut_pac):
+    if request.method == 'GET':
+        paciente = PACIENTE.objects.get(rut_pac=rut_pac)
+        return render(request, "farmacia/recepcion_entrega.html", {"paciente": paciente})
+
+    if request.method == 'POST':
+        nombre_pac = request.POST['NOMPac']
+        correo = request.POST['msgEmail']
+
+        #fecha = datetime.datetime.now()
+        #fechastr =  fecha.strftime("%m/%d/%Y, %H:%M:%S")
+        subject = 'Receta entregada a '+paciente
+        message = 'Saludos '+nombre_pac+' este correo es para avisarle que sus medicamentos se encuentran disponibles'
+        email_from = 'farmaciapruebacesfam@gmail.com'
+        email_to_list = [correo]
+        send_mail(subject,message,email_from, email_to_list)
+
+        return redirect('recepcion-farmacia')
+
 #--De prueba-- Si se consigue base de dato
 #def listmedicamentos(request):
 #    medicamento = MEDICAMENTO.objects.raw('SELECT * FROM (MODELO) order by id)
@@ -151,20 +172,18 @@ def listprescripciones(request):
 #    }
 #    return render(request,'CesfamWeb/listprescripciones.html',datos)
 # --- PACIENTE ---
-#AGREGAR
-def form_pac(request):
-    datos = {
-        'form':PACIENTEFORM()
-    }
-    if(request.method == 'POST'):
-        formulario = PACIENTEFORM(request.POST, request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            datos['mensaje'] = 'Guardado correctamente'
-        else:
-            formulario = PACIENTEFORM()
-            datos['mensaje'] = 'ERROR: No se ha guardado al paciente, intente nuevamente'
-    return render(request,'Forms/form_paciente.html',datos)
+#AGREGAR 
+def form_paciente(request):
+    if request.method == 'GET':
+        return render(request, "Forms/form_paciente.html")
+    if request.method == 'POST':
+        rut_pac	= request.POST['RUT']
+        nombre_pac = request.POST['NOMpac'] 
+        correo_pac = request.POST['EMAIL'] 
+        numero_pac	= request.POST['NUM'] 
+
+        paciente = PACIENTE.objects.create(rut_pac=rut_pac, nombre_pac=nombre_pac, correo_pac=correo_pac, numero_pac=numero_pac)
+        return redirect('form_paciente')
 
 def form_mod_pac(request,id):
     paciente = PACIENTE.objects.get(rut_pac = id)

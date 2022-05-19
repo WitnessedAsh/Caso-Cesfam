@@ -23,7 +23,7 @@ urlpatterns = [
   #path('eliminar-prescripcion/<id>',form_del_prescripcion,name="form_del_prescripcion"),
   path('listprescripciones',listprescripciones,name="listprescripciones"),
   #Paciente
-  path('agregar-paciente',agregarpac,name="form_paciente"),
+  path('form_paciente',form_paciente,name="form_paciente"),
   path('modificar-paciente/<id>',modificarpac,name="form_mod_paciente"),
   path('eliminar-paciente/<id>',eliminarpac,name="form_del_paciente"),
   #path('agregar-paciente',form_pac,name="form_paciente"), <-- Probar por si acaso
