@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'Cesfam.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-##        'NAME': BASE_DIR / 'db.sqlite3',
-  #  }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 #DATABASES = {
     #'default': {
@@ -101,20 +101,21 @@ WSGI_APPLICATION = 'Cesfam.wsgi.application'
  #       'PORT': 3306,
 #    }
 #}
-DATABASES = { 
-   'default': { 
-        'ENGINE': 'django.db.backends.oracle', 
-        'NAME': '127.0.0.1:1521/ XEPDB1', 
-        'USER':'Cesfam', 
-        'PASSWORD': 'cesfam', 
-        'TEST':{ 
 
-          'USER':'default_test', 
-          'TBLSPACE':'default_test_tbls', 
-            'TBLSPACE_TMP':'default_test_tbls_tmp', 
-       }, 
-   }, 
-} 
+#DATABASES = { 
+ #  'default': { 
+  #      'ENGINE': 'django.db.backends.oracle', 
+   #     'NAME': '127.0.0.1:1521/ XEPDB1', 
+    #    'USER':'Cesfam', 
+     #   'PASSWORD': 'cesfam', 
+      #  'TEST':{ 
+#
+ #         'USER':'default_test', 
+  #        'TBLSPACE':'default_test_tbls', 
+   #         'TBLSPACE_TMP':'default_test_tbls_tmp', 
+    #   }, 
+   #}, 
+#} 
 
 
 # Password validation
