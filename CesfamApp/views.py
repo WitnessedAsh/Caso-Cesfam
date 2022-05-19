@@ -75,8 +75,8 @@ def form_mod_medicamento(request, id_medicamento):
         return redirect('form_mod_medicamento')
 
 #ELIMINAR
-def form_del_medicamento(request, id):
-    medicamento = MEDICAMENTO.objects.get(id_medicamento=id)
+def form_del_medicamento(request, id_medicamento):
+    medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
     medicamento.delete()
 
     return redirect(to='CesfamWeb/listmedicamentos.html')
