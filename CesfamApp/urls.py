@@ -6,8 +6,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
   path('',home,name="home"),
   #Medicamentos
-  path('agregar-medicamento',agregarmed,name="form_medicamento"),
-  path('modificar-medicamento/<id>',modificarmed,name="form_mod_medicamento"),
+  path('form_medicamento',form_medicamento,name="form_medicamento"),
+  path('form_mod_medicamento/<id_medicamento>',form_mod_medicamento,name="form_mod_medicamento"),
   path('eliminar-medicamento/<id>',eliminarmed,name="form_del_medicamento"),
   #path('agregar-medicamento',form_med,name="form_medicamento"), <-- Probar por si acaso
   #path('modificar-medicamento/<id>',form_mod_med,name="form_mod_medicamento"), <-- Probar por si acaso
@@ -23,7 +23,7 @@ urlpatterns = [
   #path('eliminar-prescripcion/<id>',form_del_prescripcion,name="form_del_prescripcion"),
   path('listprescripciones',listprescripciones,name="listprescripciones"),
   #Paciente
-  path('agregar-paciente',agregarpac,name="form_paciente"),
+  path('form_paciente',form_paciente,name="form_paciente"),
   path('modificar-paciente/<id>',modificarpac,name="form_mod_paciente"),
   path('eliminar-paciente/<id>',eliminarpac,name="form_del_paciente"),
   #path('agregar-paciente',form_pac,name="form_paciente"), <-- Probar por si acaso

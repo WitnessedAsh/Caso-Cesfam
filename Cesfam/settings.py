@@ -91,6 +91,32 @@ DATABASES = {
     }
 }
 
+#DATABASES = {
+    #'default': {
+      #  'ENGINE': 'django.db.backends.mysql',
+     #   'NAME': 'Cesfam',
+    #    'USER': 'root',
+   #     'PASSWORD': '',
+  #      'HOST': '127.0.0.1',
+ #       'PORT': 3306,
+#    }
+#}
+
+#DATABASES = { 
+ #  'default': { 
+  #      'ENGINE': 'django.db.backends.oracle', 
+   #     'NAME': '127.0.0.1:1521/ XEPDB1', 
+    #    'USER':'Cesfam', 
+     #   'PASSWORD': 'cesfam', 
+      #  'TEST':{ 
+#
+ #         'USER':'default_test', 
+  #        'TBLSPACE':'default_test_tbls', 
+   #         'TBLSPACE_TMP':'default_test_tbls_tmp', 
+    #   }, 
+   #}, 
+#} 
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -137,3 +163,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+# nsebictdiborvtlm
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'farmaciapruebacesfam@gmail.com'
+EMAIL_HOST_PASSWORD = 'nsebictdiborvtlm'
