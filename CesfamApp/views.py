@@ -53,7 +53,13 @@ def form_medicamento(request):
         stock_medicamento	= request.POST['STOmed'] 
         estado_medicamento = request.POST['ESTmed'] 
         gramos_medicamento = request.POST['GRMmed']
-        medicamento = MEDICAMENTO.objects.create(id_medicamento=id_medicamento, nombre_medicamento=nombre_medicamento, precio_medicamento=precio_medicamento, stock_medicamento=stock_medicamento, estado_medicamento=estado_medicamento, gramos_medicamento=gramos_medicamento)
+        medicamento = MEDICAMENTO.objects.create(
+            id_medicamento=id_medicamento, 
+            nombre_medicamento=nombre_medicamento, 
+            precio_medicamento=precio_medicamento, 
+            stock_medicamento=stock_medicamento, 
+            estado_medicamento=estado_medicamento, 
+            gramos_medicamento=gramos_medicamento)
         return redirect('form_medicamento')
 
 #MODIFICAR
@@ -66,17 +72,17 @@ def form_mod_medicamento(request, id_medicamento):
         stock_medicamento	= request.POST['STOmed'] 
         estado_medicamento = request.POST['ESTmed'] 
 
-        modmedi = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
-        modmedi.precio_medicamento = precio_medicamento
-        modmedi.stock_medicamento = stock_medicamento
-        modmedi.estado_medicamento = estado_medicamento
-        modmedi.save()  
+        medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
+        medicamento.precio_medicamento = precio_medicamento
+        medicamento.stock_medicamento = stock_medicamento
+        medicamento.estado_medicamento = estado_medicamento
+        medicamento.save()  
 
         return redirect('form_mod_medicamento')
 
 #ELIMINAR
-def form_del_medicamento(request, id):
-    medicamento = MEDICAMENTO.objects.get(id_medicamento=id)
+def form_del_medicamento(request, id_medicamento):
+    medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
     medicamento.delete()
 
     return redirect(to='CesfamWeb/listmedicamentos.html')
@@ -120,38 +126,39 @@ def AvisoMedicamento(request, rut_pac):
 # --- PRESCRIPCION ---
 #AGREGAR
 def form_pre(request):
-    datos = {
-        'form':PRESCRIPCIONFORM()
-    }
-    if(request.method == 'POST'):
-        formulario = PRESCRIPCIONFORM(request.POST, request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            datos['mensaje'] = 'Guardado correctamente'
-        else:
-            formulario = PRESCRIPCIONFORM()
-            datos['mensaje'] = 'ERROR: No se ha guardado la prescripcion, intente nuevamente'
-    return render(request,'Forms/form_prescripcion.html',datos)
+    if request.method == 'GET':
+        return render(request, "Forms/form_prescripcion.html")
+    if request.method == 'POST':
+        id_prescripcion	= request.POST['IDpre']
+        desc_prescripcion = request.POST['DESCpre'] 
+        fecha_emision = request.POST['DATEpre'] 
+        medico	= request.POST['MEDpre'] 
+        nombre_pac = request.POST['PACpre']
+
+        prescripcion = PACIENTE.objects.create(
+            id_prescripcion=id_prescripcion, 
+            desc_prescripcion=desc_prescripcion, 
+            fecha_emision=fecha_emision, 
+            medico=medico,
+            nombre_pac=nombre_pac)
+        return redirect('form_prescripcion')
 
 #MODIFICAR
-def form_mod_pre(request,id):
-    prescripcion = PRESCRIPCION.objects.get(id_prescripcion = id)
-    datos = {
-        'form':PRESCRIPCIONFORM(instance=prescripcion)
-    }
-    if(request.method == 'POST'):
-        formulario = PRESCRIPCIONFORM(request.POST, request.FILES, instance=prescripcion)
-        if formulario.is_valid():
-            formulario.save()
-            datos['mensaje'] = 'Modicado correctamente'
-        else:
-            formulario = PRESCRIPCIONFORM()
-            datos['mensaje'] = 'ERROR: No se ha modicado la prescripcion, intente nuevamente'
-    return render(request,'Forms/form_mod_prescripcion.html',datos)
+def form_mod_pre(request,id_prescripcion):
+    if request.method == 'GET':
+        return render(request, "Forms/form_mod_prescripcion.html")
+    if request.method == 'POST':
+        desc_prescripcion = request.POST['DESCpre'] 
+
+        prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id_prescripcion)
+        prescripcion.desc_prescripcion = desc_prescripcion
+        prescripcion.save()  
+
+        return redirect('form_mod_prescripcion')
 
 #ELIMINAR
-def form_del_prescripcion(request, id):
-    prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id)
+def form_del_prescripcion(request, id_prescripcion):
+    prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id_prescripcion)
     prescripcion.delete()
 
     return redirect(to='CesfamWeb/listprescripciones.html')
@@ -182,27 +189,33 @@ def form_paciente(request):
         correo_pac = request.POST['EMAIL'] 
         numero_pac	= request.POST['NUM'] 
 
-        paciente = PACIENTE.objects.create(rut_pac=rut_pac, nombre_pac=nombre_pac, correo_pac=correo_pac, numero_pac=numero_pac)
+        paciente = PACIENTE.objects.create(
+            rut_pac=rut_pac, 
+            nombre_pac=nombre_pac, 
+            correo_pac=correo_pac, 
+            numero_pac=numero_pac)
         return redirect('form_paciente')
 
-def form_mod_pac(request,id):
-    paciente = PACIENTE.objects.get(rut_pac = id)
-    datos = {
-        'form':PACIENTEFORM(instance=paciente)
-    }
-    if(request.method == 'POST'):
-        formulario = PACIENTEFORM(request.POST, request.FILES,instance=paciente)
-        if formulario.is_valid():
-            formulario.save()
-            datos['mensaje'] = 'Modicado correctamente'
-        else:
-            formulario = PACIENTEFORM()
-            datos['mensaje'] = 'ERROR: No se ha modicado al paciente, intente nuevamente'
-    return render(request,'Forms/form_mod_paciente.html',datos)
+def form_mod_pac(request,rut_pac):
+    if request.method == 'GET':
+        modPAC = PACIENTE.objects.get(rut_pac=rut_pac)
+        return render(request, "Forms/form_paciente.html", {"PACIENTE": modPAC})
+    if request.method == 'POST':
+        nombre_pac = request.POST['NOMpac'] 
+        correo_pac = request.POST['EMAIL'] 
+        numero_pac	= request.POST['NUM'] 
+
+        paciente = PACIENTE.objects.get(rut_pac=rut_pac)
+        paciente.nombre_pac = nombre_pac
+        paciente.correo_pac = correo_pac
+        paciente.numero_pac = numero_pac
+        paciente.save()  
+
+        return redirect('form_mod_paciente')
 
 #ELIMINAR
-def form_del_paciente(request, id):
-    paciente = PACIENTE.objects.get(rut_pac=id)
+def form_del_paciente(request, rut_pac):
+    paciente = PACIENTE.objects.get(rut_pac=rut_pac)
     paciente.delete()
 
     return redirect(to='CesfamWeb/listpacientes.html')

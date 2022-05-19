@@ -60,23 +60,23 @@
         <form method="post" action="form_prescripcion" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
                 <label for="txtIDpre" class="form-label">ID Prescripcion</label>
-                <input type="number" class="form-control" name="txtIDpre" id="txtIDpre" />
+                <input type="number" class="form-control" name="IDpre" id="IDpre" />
             </div>
             <div class="mb-3">
                 <label for="txtDESCpre" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="txtDESCpre" id="txtDESCpre" />
+                <input type="text" class="form-control" name="DESCpre" id="DESCpre" />
             </div>
             <div class="mb-3">
                 <label for="txtDATEpre" class="form-label">Fecha Emision</label>
-                <input type="text" class="form-control" name="txtDATEpre" id="txtDATEpre" />
+                <input type="text" class="form-control" name="DATEpre" id="DATEpre" />
             </div>
             <div class="mb-3">
-                <label for="txtMEDICpre" class="form-label">Medico</label>
-                <input type="text" class="form-control" name="txtMEDICpre" id="txtMEDICpre" />
+                <label for="txtMEDpre" class="form-label">Medico</label>
+                <input type="text" class="form-control" name="MEDpre" id="MEDpre" />
             </div>
             <div class="mb-3">
                 <label for="txtPACpre" class="form-label">Nombre del paciente</label>
-                <input type="text" class="form-control" name="txtPACpre" id="txtPACpre" />
+                <input type="text" class="form-control" name="PACpre" id="PACpre" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
             <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}

@@ -55,24 +55,19 @@
         </nav>
     </div>
     <!--!!!FORMULARIO!!!-->
-    {% load crispy_forms_tags %}
     <div id="divcontactos">
         <form method="post" action="form_mod_paciente" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
-                <label for="txtRUTpac" class="form-label">Rut</label>
-                <input type="text" class="form-control" name="txtRUTpac" id="txtRUTpac" />
-            </div>
-            <div class="mb-3">
                 <label for="txtNOMpac" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="txtNOMpac" id="txtNOMpac" />
+                <input type="text" class="form-control" name="NOMpac" id="NOMpac" />
             </div>
             <div class="mb-3">
                 <label for="txtEMAILpac" class="form-label">Correo</label>
-                <input type="text" class="form-control" name="txtEMAILpac" id="txtEMAILpac" />
+                <input type="text" class="form-control" name="EMAIL" id="EMAIL" />
             </div>
             <div class="mb-3">
                 <label for="txtNUMpac" class="form-label">Numero telefonico</label>
-                <input type="number" class="form-control" name="txtNUMpac" id="txtNUMpac" />
+                <input type="text" class="form-control" name="NUM" id="NUM" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
             <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}
