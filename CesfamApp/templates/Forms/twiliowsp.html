@@ -53,43 +53,23 @@
             </div>
         </nav>
     </div>
-    <div id="divlist">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">RUT</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">CORREO</th>
-                    <th scope="col">TELEFONO(NUMERO)</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">EMAIL</th>
-                    <th scope="col">WSP</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pac in paciente%}
-                <tr>
-                    <th>{{pac.rut_pac}}</th>
-                    <td>{{pac.nombre_pac}}</td>
-                    <td>{{pac.correo_pac}}</td>
-                    <td>{{pac.numero_pac}}</td>
-                    <td>
-                        <a href="{%url 'form_mod_pac' pac.rut_pac %}">Modificar</a>
-                    </td>
-                    <td>
-                        <a href="{%url 'form_del_paciente' pac.rut_pac %}">Eliminar</a>
-                    </td>
-                    <td>
-                        <a href="{%url 'notificarPac' pac.rut_pac %}">EMAIL</a>
-                    </td>
-                    <td>
-                        <a href="{%url 'twiliowsp' pac.rut_pac %}">WSP</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <!--!!!FORMULARIO!!!-->
+    <div id="divcontactos">
+        <form method="post" action="twiliowsp" id="formulario" method="POST">{% csrf_token %}
+            <div class="mb-3">
+                <label for="RUT" class="form-label">Rut</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.rut_pac}}" name="RUT" id="RUT" />
+            </div>
+            <div class="mb-3">
+                <label for="NOMpac" class="form-label">Nombre</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.nombre_pac}}" name="NOMpac" id="NOMpac" />
+            </div>
+            <div class="mb-3">
+                <label for="NUMpac" class="form-label">Numero</label>
+                <input readonly type="text" class="form-control" value="{{PACIENTE.numero_pac}}" name="NUMpac" id="NUMpac" />
+            </div>
+            <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
+        </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

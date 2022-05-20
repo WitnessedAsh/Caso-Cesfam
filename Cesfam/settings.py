@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'CesfamApp',
+    'twilio',
     'rest_framework',
     'rest_framework.authtoken',
     'crispy_forms',

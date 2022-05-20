@@ -5,8 +5,12 @@ from .forms import MEDICAMENTOFORM, PRESCRIPCIONFORM, PACIENTEFORM
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, permission_required 
 from django.core.mail import send_mail
+import os
+from twilio.rest import Client
 import datetime
-
+account_sid = 'AC6d57e3063cd5c1f3ad933c4158bfb26d'
+auth_token = '7a47704f136015e9756ba0020b75dd20'
+client = Client(account_sid, auth_token)
 # Create your views here.
 
 def home(request):
@@ -86,6 +90,22 @@ def notificarPac(request, rut_pac):
         email_from = 'farmaciapruebacesfam@gmail.com'
         email_to_list = [correo]
         send_mail(subject,message,email_from, email_to_list)
+        return redirect('listpacientes')
+
+#AVISO WSP
+def twiliowsp(request, rut_pac):
+    if request.method == 'GET':
+        paciente = PACIENTE.objects.get(rut_pac=rut_pac)
+        return render(request, "Forms/twiliowsp.html", {"PACIENTE": paciente})
+    if request.method == 'POST':
+        nombre_pac = request.POST['NOMpac']
+        numero = request.POST['NUMpac']
+        message = client.messages.create(
+                              from_='whatsapp:+14155238886',
+                              body='Saludos '+nombre_pac+' este mensaje es para avisarle que sus medicamentos se encuentran disponibles',
+                              to='whatsapp:'+numero
+                          )
+        print(message.sid)
         return redirect('listpacientes')
 
 #--De prueba-- Si se consigue base de dato
