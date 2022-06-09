@@ -41,9 +41,9 @@ def form_medicamento(request):
         return redirect('listmedicamentos')
 
 #MODIFICAR
-def form_mod_medicamento(request, id_medicamento):
+def form_mod_medicamento(request, id):
     if request.method == 'GET':
-        modMed = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
+        modMed = MEDICAMENTO.objects.get(id_medicamento=id)
         return render(request, "Forms/form_mod_medicamento.html", {"MEDICAMENTO": modMed})
     elif request.method == 'POST':
         id_medicamento	= request.POST['IDmed']
@@ -63,8 +63,8 @@ def form_mod_medicamento(request, id_medicamento):
         return redirect('listmedicamentos')
 
 #ELIMINAR
-def form_del_medicamento(request, id_medicamento):
-    medicamento = MEDICAMENTO.objects.get(id_medicamento=id_medicamento)
+def form_del_medicamento(request, id):
+    medicamento = MEDICAMENTO.objects.get(id_medicamento=id)
     medicamento.delete()
 
     return redirect(to='listmedicamentos')
@@ -133,20 +133,23 @@ def form_pre(request):
             fecha_emision=fecha_emision, 
             Username=Username,
             nombre_pac=nombre_pac)
-        return redirect('form_prescripcion')
+        return redirect('listprescripciones')
 
 #MODIFICAR
-def form_mod_pre(request,id_prescripcion):
+def form_mod_pre(request,id):
     if request.method == 'GET':
-        return render(request, "Forms/form_mod_prescripcion.html")
+        prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id)
+        return render(request, "Forms/form_mod_prescripcion.html", {"PRESCRIPCION": prescripcion})
     if request.method == 'POST':
+        id_prescripcion = request.POST['IDpre']
         desc_prescripcion = request.POST['DESCpre'] 
 
         prescripcion = PRESCRIPCION.objects.get(id_prescripcion=id_prescripcion)
+        prescripcion.id_prescripcion = id_prescripcion
         prescripcion.desc_prescripcion = desc_prescripcion
         prescripcion.save()  
 
-        return redirect('form_mod_prescripcion')
+        return redirect('listprescripciones')
 
 #ELIMINAR
 def form_del_prescripcion(request, id):
@@ -188,9 +191,9 @@ def form_paciente(request):
             numero_pac=numero_pac)
         return redirect('listpacientes')
 
-def form_mod_pac(request,rut_pac):
+def form_mod_pac(request,id):
     if request.method == 'GET':
-        modPAC = PACIENTE.objects.get(rut_pac=rut_pac)
+        modPAC = PACIENTE.objects.get(rut_pac=id)
         return render(request, "Forms/form_mod_paciente.html", {"PACIENTE": modPAC})
     if request.method == 'POST':
         rut_pac	= request.POST['RUT']

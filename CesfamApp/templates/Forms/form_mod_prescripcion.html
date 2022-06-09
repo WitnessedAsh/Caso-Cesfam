@@ -58,8 +58,12 @@
     <div id="divcontactos">
         <form method="post" action="form_mod_prescripcion" id="formulario" method="POST">{% csrf_token %}
             <div class="mb-3">
+                <label COLOR="white" for="IDpre" class="form-label">No se puede editar el ID</label>
+                <input readonly type="number" class="form-control" value="{{PRESCRIPCION.id_prescripcion}}" name="IDpre" id="IDpre" />
+            </div>
+            <div class="mb-3">
                 <label for="txtDESCpre" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="DESCpre" id="DESCpre" />
+                <input type="text" class="form-control" value="{{PRESCRIPCION.desc_prescripcion}}" name="DESCpre" id="DESCpre" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
             <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}

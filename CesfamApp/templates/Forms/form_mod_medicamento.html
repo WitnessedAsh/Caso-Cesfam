@@ -63,23 +63,23 @@
             </div>
             <div class="mb-3">
                 <label for="NOMmed" class="form-label">Nombre Medicamento</label>
-                <input type="text" class="form-control" name="NOMmed" id="NOMmed" />
+                <input type="text" class="form-control" value="{{MEDICAMENTO.nombre_medicamento}}" name="NOMmed" id="NOMmed" />
             </div>
             <div class="mb-3">
                 <label for="PREmed" class="form-label">Precio Medicamento</label>
-                <input type="number" class="form-control" name="PREmed" id="PREmed" />
+                <input type="number" class="form-control" value="{{MEDICAMENTO.precio_medicamento}}" name="PREmed" id="PREmed" />
             </div>
             <div class="mb-3">
                 <label for="STOmed" class="form-label">Stock Medicamento</label>
-                <input type="number" class="form-control" name="STOmed" id="STOmed" />
+                <input type="number" class="form-control" value="{{MEDICAMENTO.stock_medicamento}}" name="STOmed" id="STOmed" />
             </div>
             <div class="mb-3">
                 <label for="ESTmed" class="form-label">Estado Medicamento</label>
-                <input type="text" class="form-control" name="ESTmed" id="ESTmed" />
+                <input type="text" class="form-control" value="{{MEDICAMENTO.estado_medicamento}}" name="ESTmed" id="ESTmed" />
             </div>
             <div class="mb-3">
                 <label for="GRMmed" class="form-label">Gramos Medicamento</label>
-                <input type="number" class="form-control" name="GRMmed" id="GRMmed" />
+                <input type="number" class="form-control" value="{{MEDICAMENTO.gramos_medicamento}}" name="GRMmed" id="GRMmed" />
             </div>
             <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
             <input type="reset" class="btn btn-primary" id="limnpiar" value="Limpiar"> {% if mensaje %}

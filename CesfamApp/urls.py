@@ -7,7 +7,7 @@ urlpatterns = [
   path('',home,name="home"),
   #Medicamentos
   path('form_medicamento',form_medicamento,name="form_medicamento"),
-  path('form_mod_medicamento/<id_medicamento>',form_mod_medicamento,name="form_mod_medicamento"),
+  path('form_mod_medicamento/<id>',form_mod_medicamento,name="form_mod_medicamento"),
   path('form_del_medicamento/<id>',form_del_medicamento,name="form_del_medicamento"),
   #path('agregar-medicamento',form_med,name="form_medicamento"), <-- Probar por si acaso
   #path('modificar-medicamento/<id>',form_mod_med,name="form_mod_medicamento"), <-- Probar por si acaso
@@ -24,7 +24,7 @@ urlpatterns = [
   path('listprescripciones',listprescripciones,name="listprescripciones"),
   #Paciente
   path('form_paciente',form_paciente,name="form_paciente"),
-  path('form_mod_pac/<rut_pac>',form_mod_pac,name="form_mod_pac"),
+  path('form_mod_pac/<id>',form_mod_pac,name="form_mod_pac"),
   path('form_del_paciente/<id>',form_del_paciente,name="form_del_paciente"),
   #path('agregar-paciente',form_pac,name="form_paciente"), <-- Probar por si acaso
   #path('modificar-paciente/<id>',form_mod_pac,name="form_mod_paciente"), <-- Probar por si acaso
